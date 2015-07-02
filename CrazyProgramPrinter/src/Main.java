@@ -3,13 +3,15 @@ import java.util.HashMap;
 
 
 public class Main {
-	public final int k = 8; 
+	public static final int k = 3; 
+	public static final String fileNameBase = "P";
 	public static void main(String[] args) throws Exception{
-		
+		System.out.println("Starting dump at " + Integer.toString(k));
+		String fileName = fileNameBase + "_" + Integer.toString(k) + ".bpl";
 //		try{
-			PrintWriter w = new PrintWriter("P.bpl", "UTF-8");
+			PrintWriter w = new PrintWriter(fileName, "UTF-8");
 			try{
-				Dumper d = new Dumper(w,3);
+				Dumper d = new Dumper(w,k);
 				d.dump();
 			}finally{
 				w.flush();
@@ -18,6 +20,7 @@ public class Main {
 //		}catch (Exception e){
 //			System.out.println("Exception " + e.toString());
 //		}
+			System.out.println("Done.");
 		
 	}
 	
@@ -33,7 +36,6 @@ public class Main {
 			this.n = pow2(k);
 		}
 		final String labelName = "l";
-		private int labelIndex = 0;
 		private int roundNum = 0;
 		public void dump()
 		{
@@ -61,19 +63,30 @@ public class Main {
 			dumpGoto(labelNames);
 
 			for (int i=0;i<n;i++)
+			{
+				String[] Si1 = getS(i,1);
+				String[] Si2 = getS(i,2);
+				dumpT(kk+1,0,2*n-1,Si1);
+				dumpT(kk+1,0,2*n-1,Si2);
+			}
+			
+			for (int i=0;i<n;i++)
 				printJoinee(i,labelNames[i],joinLabel,zName,varNames);
 			
 			dumpLabel(joinLabel);
 			roundNum++;
+			fMap.clear();
 			return zName;
 			
 		}
 		private void dumpLabel(String l) {
 			f.println("   " + l + ":");
 		}
-		private void printJoinee(int i,String l,String joinLabel,String zName,String[] varNames) {
+		private void printJoinee(int index,String l,String joinLabel,String zName,String[] varNames) {
 			dumpLabel(l);
-			String a = dumpA(i);
+			for (int i=0;i<n;i++)
+				dumpAssignment(varNames[i], i==index ? "1" : "0");
+			String a = dumpA(index);
 			dumpAssignment(zName,a);
 			f.println("   goto " + joinLabel + ";");
 		}
@@ -157,12 +170,13 @@ public class Main {
 		}
 		private void dumpGoto(String[] labelNames) {
 			f.print("goto ");
-			boolean b = true;
+			boolean b = false;
 			for (String ln : labelNames)
 			{
 				if (b)
 					f.print(",");
 				f.print(ln);
+				b=true;
 			}
 			f.println(";");
 		}
