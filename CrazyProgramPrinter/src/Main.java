@@ -1,13 +1,12 @@
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 
 public class Main {
 	public static final int k = 3; 
-	public static final String fileNameBase = "P";
+	public static final String fileNameBase = "PP";
 	public static void main(String[] args) throws Exception{
 		System.out.println("Starting dump at " + Integer.toString(k));
 		String fileName = fileNameBase + "_" + Integer.toString(k) + ".bpl";
@@ -39,33 +38,43 @@ public class Main {
 			this.n = pow2(k);
 		}
 		final String labelName = "l";
-		private int roundNum = 0;
 		public List<String[]> varNamess = new ArrayList<String[]>();
+		public final int numRounds=2;
 		public void dump()
 		{
 			dumpPre();
-			String r0 = dumpRound();
-			String r1 = dumpRound();
-			for (int i=0;i<n;i++)
-				dumpEquality(varNamess.get(0)[i],varNamess.get(1)[i]);
-			f.println("   assert " + r0 + "=" + r1);
+			for (int rn=0;rn<numRounds;rn++)
+			{
+				String[] varNames = new String[n];
+				for (int i=0;i<n;i++)
+				{
+					String varName = "x_" + Integer.toString(rn) + "_" + Integer.toString(i);
+					declareVariable(varName);
+					varNames[i] = varName;
+				}
+				varNamess.add(varNames);
+			}
+			String[] ri = new String[numRounds];
+			for (int rn=0;rn<numRounds;rn++)
+				ri[rn] = dumpRound(rn);
+			for (int rn=0;rn<numRounds-1;rn++)
+				for (int i=0;i<n;i++)
+					dumpEquality(varNamess.get(rn)[i],varNamess.get(rn+1)[i]);
+			for (int rn=0;rn<numRounds-1;rn++)
+				f.println("   assert " + ri[rn] + "==" + ri[rn+1] + ";");
 			dumpPost();
 		}
-		public String dumpRound()
+		public String dumpRound(int rn)
 		{
-			String joinLabel = "j_" + Integer.toString(roundNum);
+			String joinLabel = "j_" + Integer.toString(rn);
 			String[] labelNames = new String[n];
-			String[] varNames = new String[n];
-			String zName = "z_" + Integer.toString(roundNum);
+			String[] varNames = varNamess.get(rn);
+			String zName = "z_" + Integer.toString(rn);
 			for (int i=0;i<n;i++)
 			{
-				String varName = "x_" + Integer.toString(roundNum) + "_" + Integer.toString(i);
-				declareVariable(varName);
-				varNames[i] = varName;
-				String ln = labelName + Integer.toString(roundNum) + "_" + Integer.toString(i);
+				String ln = labelName + "_" + Integer.toString(rn) + "_" + Integer.toString(i);
 				labelNames[i] = ln;
 			}
-			varNamess.add(varNames);
 			
 			dumpGoto(labelNames);
 
@@ -81,7 +90,6 @@ public class Main {
 				printJoinee(i,labelNames[i],joinLabel,zName,varNames);
 			
 			dumpLabel(joinLabel);
-			roundNum++;
 			fMap.clear();
 			return zName;
 			
