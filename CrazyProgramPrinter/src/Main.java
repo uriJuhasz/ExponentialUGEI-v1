@@ -61,7 +61,7 @@ public class Main {
 			dumpGoto(labelNames);
 
 			for (int i=0;i<n;i++)
-				printJoinee(i,labelNames[i],joinLabel,zName);
+				printJoinee(i,labelNames[i],joinLabel,zName,varNames);
 			
 			dumpLabel(joinLabel);
 			roundNum++;
@@ -71,7 +71,7 @@ public class Main {
 		private void dumpLabel(String l) {
 			f.println("   " + l + ":");
 		}
-		private void printJoinee(int i,String l,String joinLabel,String zName) {
+		private void printJoinee(int i,String l,String joinLabel,String zName,String[] varNames) {
 			dumpLabel(l);
 			String a = dumpA(i);
 			dumpAssignment(zName,a);
