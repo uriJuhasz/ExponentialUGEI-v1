@@ -1,5 +1,8 @@
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class Main {
@@ -37,11 +40,14 @@ public class Main {
 		}
 		final String labelName = "l";
 		private int roundNum = 0;
+		public List<String[]> varNamess = new ArrayList<String[]>();
 		public void dump()
 		{
 			dumpPre();
 			String r0 = dumpRound();
 			String r1 = dumpRound();
+			for (int i=0;i<n;i++)
+				dumpEquality(varNamess.get(0)[i],varNamess.get(1)[i]);
 			f.println("   assert " + r0 + "=" + r1);
 			dumpPost();
 		}
@@ -59,6 +65,7 @@ public class Main {
 				String ln = labelName + Integer.toString(roundNum) + "_" + Integer.toString(i);
 				labelNames[i] = ln;
 			}
+			varNamess.add(varNames);
 			
 			dumpGoto(labelNames);
 
@@ -85,12 +92,12 @@ public class Main {
 		private void printJoinee(int index,String l,String joinLabel,String zName,String[] varNames) {
 			dumpLabel(l);
 			for (int i=0;i<n;i++)
-				dumpAssignment(varNames[i], i==index ? "1" : "0");
+				dumpEquality(varNames[i], i==index ? "1" : "0");
 			String a = dumpA(index);
-			dumpAssignment(zName,a);
+			dumpEquality(zName,a);
 			f.println("   goto " + joinLabel + ";");
 		}
-		private void dumpAssignment(String zName, String a) {
+		private void dumpEquality(String zName, String a) {
 			f.println("   assume " + zName + " == " + a + ";");
 		}
 /*		private int log2(int x)
@@ -169,7 +176,7 @@ public class Main {
 			return name;
 		}
 		private void dumpGoto(String[] labelNames) {
-			f.print("goto ");
+			f.print("   goto ");
 			boolean b = false;
 			for (String ln : labelNames)
 			{
@@ -181,7 +188,7 @@ public class Main {
 			f.println(";");
 		}
 		private void declareVariable(String name) {
-			f.println("   var " + name + " : Int");
+			f.println("   var " + name + " : Int;");
 		}
 		private void dumpPre() {
 			f.println("procedure P()");
