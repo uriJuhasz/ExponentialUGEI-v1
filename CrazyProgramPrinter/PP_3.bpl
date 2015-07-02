@@ -1,22 +1,288 @@
 procedure P()
 {
-   var x_0_0 : Int;
-   var x_0_1 : Int;
-   var x_0_2 : Int;
-   var x_0_3 : Int;
-   var x_0_4 : Int;
-   var x_0_5 : Int;
-   var x_0_6 : Int;
-   var x_0_7 : Int;
-   var x_1_0 : Int;
-   var x_1_1 : Int;
-   var x_1_2 : Int;
-   var x_1_3 : Int;
-   var x_1_4 : Int;
-   var x_1_5 : Int;
-   var x_1_6 : Int;
-   var x_1_7 : Int;
-   goto l0_0,l0_1,l0_2,l0_3,l0_4,l0_5,l0_6,l0_7;
+   var f_27 : Integer;
+   var f_108 : Integer;
+   var f_69 : Integer;
+   var f_116 : Integer;
+   var f_90 : Integer;
+   var f_114 : Integer;
+   var f_110 : Integer;
+   var f_50 : Integer;
+   var f_98 : Integer;
+   var f_7 : Integer;
+   var f_121 : Integer;
+   var f_20 : Integer;
+   var f_93 : Integer;
+   var f_101 : Integer;
+   var f_48 : Integer;
+   var f_22 : Integer;
+   var f_67 : Integer;
+   var f_115 : Integer;
+   var f_86 : Integer;
+   var f_79 : Integer;
+   var f_33 : Integer;
+   var f_65 : Integer;
+   var f_1 : Integer;
+   var f_35 : Integer;
+   var f_66 : Integer;
+   var f_24 : Integer;
+   var f_21 : Integer;
+   var f_56 : Integer;
+   var f_73 : Integer;
+   var f_124 : Integer;
+   var f_63 : Integer;
+   var f_71 : Integer;
+   var f_61 : Integer;
+   var f_15 : Integer;
+   var f_118 : Integer;
+   var f_9 : Integer;
+   var f_0 : Integer;
+   var f_19 : Integer;
+   var f_78 : Integer;
+   var f_58 : Integer;
+   var f_97 : Integer;
+   var f_38 : Integer;
+   var f_103 : Integer;
+   var f_131 : Integer;
+   var f_77 : Integer;
+   var f_119 : Integer;
+   var f_2 : Integer;
+   var f_25 : Integer;
+   var f_123 : Integer;
+   var f_57 : Integer;
+   var f_113 : Integer;
+   var f_37 : Integer;
+   var f_43 : Integer;
+   var f_129 : Integer;
+   var f_32 : Integer;
+   var f_46 : Integer;
+   var f_6 : Integer;
+   var f_75 : Integer;
+   var f_30 : Integer;
+   var f_94 : Integer;
+   var f_74 : Integer;
+   var f_109 : Integer;
+   var f_34 : Integer;
+   var f_42 : Integer;
+   var f_122 : Integer;
+   var f_82 : Integer;
+   var f_120 : Integer;
+   var f_4 : Integer;
+   var f_62 : Integer;
+   var f_130 : Integer;
+   var f_112 : Integer;
+   var f_51 : Integer;
+   var f_126 : Integer;
+   var f_12 : Integer;
+   var f_106 : Integer;
+   var f_70 : Integer;
+   var f_23 : Integer;
+   var f_89 : Integer;
+   var f_132 : Integer;
+   var f_102 : Integer;
+   var f_11 : Integer;
+   var f_49 : Integer;
+   var f_68 : Integer;
+   var f_87 : Integer;
+   var f_88 : Integer;
+   var f_47 : Integer;
+   var f_127 : Integer;
+   var f_111 : Integer;
+   var f_31 : Integer;
+   var f_95 : Integer;
+   var f_107 : Integer;
+   var f_125 : Integer;
+   var f_85 : Integer;
+   var f_14 : Integer;
+   var f_29 : Integer;
+   var f_55 : Integer;
+   var f_13 : Integer;
+   var f_45 : Integer;
+   var f_16 : Integer;
+   var f_53 : Integer;
+   var f_104 : Integer;
+   var f_17 : Integer;
+   var f_91 : Integer;
+   var f_81 : Integer;
+   var f_128 : Integer;
+   var f_26 : Integer;
+   var f_41 : Integer;
+   var f_100 : Integer;
+   var f_54 : Integer;
+   var f_18 : Integer;
+   var f_80 : Integer;
+   var f_60 : Integer;
+   var f_99 : Integer;
+   var f_40 : Integer;
+   var f_59 : Integer;
+   var f_39 : Integer;
+   var f_5 : Integer;
+   var f_52 : Integer;
+   var f_44 : Integer;
+   var f_96 : Integer;
+   var f_76 : Integer;
+   var f_3 : Integer;
+   var f_36 : Integer;
+   var f_8 : Integer;
+   var f_28 : Integer;
+   var f_105 : Integer;
+   var f_84 : Integer;
+   var f_64 : Integer;
+   var f_10 : Integer;
+   var f_83 : Integer;
+   var f_92 : Integer;
+   var f_72 : Integer;
+   var f_117 : Integer;
+   var f_182 : Integer;
+   var f_202 : Integer;
+   var f_150 : Integer;
+   var f_214 : Integer;
+   var f_156 : Integer;
+   var f_234 : Integer;
+   var f_196 : Integer;
+   var f_249 : Integer;
+   var f_140 : Integer;
+   var f_197 : Integer;
+   var f_209 : Integer;
+   var f_149 : Integer;
+   var f_170 : Integer;
+   var f_161 : Integer;
+   var f_229 : Integer;
+   var f_215 : Integer;
+   var f_226 : Integer;
+   var f_254 : Integer;
+   var f_213 : Integer;
+   var f_136 : Integer;
+   var f_181 : Integer;
+   var f_190 : Integer;
+   var f_137 : Integer;
+   var f_247 : Integer;
+   var f_134 : Integer;
+   var f_146 : Integer;
+   var f_233 : Integer;
+   var f_145 : Integer;
+   var f_153 : Integer;
+   var f_155 : Integer;
+   var f_157 : Integer;
+   var f_162 : Integer;
+   var f_195 : Integer;
+   var f_151 : Integer;
+   var f_189 : Integer;
+   var f_169 : Integer;
+   var f_210 : Integer;
+   var f_230 : Integer;
+   var f_177 : Integer;
+   var f_221 : Integer;
+   var f_253 : Integer;
+   var f_222 : Integer;
+   var f_232 : Integer;
+   var f_242 : Integer;
+   var f_187 : Integer;
+   var f_184 : Integer;
+   var f_133 : Integer;
+   var f_194 : Integer;
+   var f_237 : Integer;
+   var f_227 : Integer;
+   var f_262 : Integer;
+   var f_201 : Integer;
+   var f_174 : Integer;
+   var f_207 : Integer;
+   var f_217 : Integer;
+   var f_241 : Integer;
+   var f_252 : Integer;
+   var f_235 : Integer;
+   var f_142 : Integer;
+   var f_143 : Integer;
+   var f_154 : Integer;
+   var f_173 : Integer;
+   var f_135 : Integer;
+   var f_261 : Integer;
+   var f_211 : Integer;
+   var f_193 : Integer;
+   var f_248 : Integer;
+   var f_183 : Integer;
+   var f_163 : Integer;
+   var f_212 : Integer;
+   var f_238 : Integer;
+   var f_141 : Integer;
+   var f_147 : Integer;
+   var f_218 : Integer;
+   var f_176 : Integer;
+   var f_228 : Integer;
+   var f_158 : Integer;
+   var f_251 : Integer;
+   var f_204 : Integer;
+   var f_172 : Integer;
+   var f_259 : Integer;
+   var f_185 : Integer;
+   var f_166 : Integer;
+   var f_239 : Integer;
+   var f_224 : Integer;
+   var f_192 : Integer;
+   var f_186 : Integer;
+   var f_244 : Integer;
+   var f_257 : Integer;
+   var f_258 : Integer;
+   var f_205 : Integer;
+   var f_219 : Integer;
+   var f_180 : Integer;
+   var f_203 : Integer;
+   var f_260 : Integer;
+   var f_200 : Integer;
+   var f_223 : Integer;
+   var f_191 : Integer;
+   var f_171 : Integer;
+   var f_164 : Integer;
+   var f_159 : Integer;
+   var f_240 : Integer;
+   var f_208 : Integer;
+   var f_263 : Integer;
+   var f_206 : Integer;
+   var f_243 : Integer;
+   var f_250 : Integer;
+   var f_179 : Integer;
+   var f_220 : Integer;
+   var f_216 : Integer;
+   var f_152 : Integer;
+   var f_144 : Integer;
+   var f_160 : Integer;
+   var f_236 : Integer;
+   var f_168 : Integer;
+   var f_199 : Integer;
+   var f_139 : Integer;
+   var f_188 : Integer;
+   var f_246 : Integer;
+   var f_256 : Integer;
+   var f_178 : Integer;
+   var f_264 : Integer;
+   var f_138 : Integer;
+   var f_165 : Integer;
+   var f_175 : Integer;
+   var f_225 : Integer;
+   var f_198 : Integer;
+   var f_148 : Integer;
+   var f_231 : Integer;
+   var f_255 : Integer;
+   var f_265 : Integer;
+   var f_167 : Integer;
+   var f_245 : Integer;
+   var x_0_0 : Integer;
+   var x_0_1 : Integer;
+   var x_0_2 : Integer;
+   var x_0_3 : Integer;
+   var x_0_4 : Integer;
+   var x_0_5 : Integer;
+   var x_0_6 : Integer;
+   var x_0_7 : Integer;
+   var x_1_0 : Integer;
+   var x_1_1 : Integer;
+   var x_1_2 : Integer;
+   var x_1_3 : Integer;
+   var x_1_4 : Integer;
+   var x_1_5 : Integer;
+   var x_1_6 : Integer;
+   var x_1_7 : Integer;
+   goto l_0_0,l_0_1,l_0_2,l_0_3,l_0_4,l_0_5,l_0_6,l_0_7;
    f_0 := F(1,0);
    f_1 := F(0,0);
    f_2 := F(f_0,f_1);
@@ -50,7 +316,7 @@ procedure P()
    f_30 := F(f_5,f_19);
    f_31 := F(f_5,f_21);
    f_32 := F(f_5,f_23);
-   l0_0:
+   l_0_0:
    assume x_0_0 == 1;
    assume x_0_1 == 0;
    assume x_0_2 == 0;
@@ -70,7 +336,7 @@ procedure P()
    f_41 := F(f_40,f_40);
    assume z_0 == f_41;
    goto j_0;
-   l0_1:
+   l_0_1:
    assume x_0_0 == 0;
    assume x_0_1 == 1;
    assume x_0_2 == 0;
@@ -91,7 +357,7 @@ procedure P()
    f_51 := F(f_50,f_50);
    assume z_0 == f_51;
    goto j_0;
-   l0_2:
+   l_0_2:
    assume x_0_0 == 0;
    assume x_0_1 == 0;
    assume x_0_2 == 1;
@@ -113,7 +379,7 @@ procedure P()
    f_62 := F(f_61,f_61);
    assume z_0 == f_62;
    goto j_0;
-   l0_3:
+   l_0_3:
    assume x_0_0 == 0;
    assume x_0_1 == 0;
    assume x_0_2 == 0;
@@ -136,7 +402,7 @@ procedure P()
    f_74 := F(f_73,f_73);
    assume z_0 == f_74;
    goto j_0;
-   l0_4:
+   l_0_4:
    assume x_0_0 == 0;
    assume x_0_1 == 0;
    assume x_0_2 == 0;
@@ -160,7 +426,7 @@ procedure P()
    f_87 := F(f_86,f_86);
    assume z_0 == f_87;
    goto j_0;
-   l0_5:
+   l_0_5:
    assume x_0_0 == 0;
    assume x_0_1 == 0;
    assume x_0_2 == 0;
@@ -185,7 +451,7 @@ procedure P()
    f_101 := F(f_100,f_100);
    assume z_0 == f_101;
    goto j_0;
-   l0_6:
+   l_0_6:
    assume x_0_0 == 0;
    assume x_0_1 == 0;
    assume x_0_2 == 0;
@@ -211,7 +477,7 @@ procedure P()
    f_116 := F(f_115,f_115);
    assume z_0 == f_116;
    goto j_0;
-   l0_7:
+   l_0_7:
    assume x_0_0 == 0;
    assume x_0_1 == 0;
    assume x_0_2 == 0;
@@ -239,7 +505,7 @@ procedure P()
    assume z_0 == f_132;
    goto j_0;
    j_0:
-   goto l1_0,l1_1,l1_2,l1_3,l1_4,l1_5,l1_6,l1_7;
+   goto l_1_0,l_1_1,l_1_2,l_1_3,l_1_4,l_1_5,l_1_6,l_1_7;
    f_133 := F(1,0);
    f_134 := F(0,0);
    f_135 := F(f_133,f_134);
@@ -273,7 +539,7 @@ procedure P()
    f_163 := F(f_138,f_152);
    f_164 := F(f_138,f_154);
    f_165 := F(f_138,f_156);
-   l1_0:
+   l_1_0:
    assume x_1_0 == 1;
    assume x_1_1 == 0;
    assume x_1_2 == 0;
@@ -293,7 +559,7 @@ procedure P()
    f_174 := F(f_173,f_173);
    assume z_1 == f_174;
    goto j_1;
-   l1_1:
+   l_1_1:
    assume x_1_0 == 0;
    assume x_1_1 == 1;
    assume x_1_2 == 0;
@@ -314,7 +580,7 @@ procedure P()
    f_184 := F(f_183,f_183);
    assume z_1 == f_184;
    goto j_1;
-   l1_2:
+   l_1_2:
    assume x_1_0 == 0;
    assume x_1_1 == 0;
    assume x_1_2 == 1;
@@ -336,7 +602,7 @@ procedure P()
    f_195 := F(f_194,f_194);
    assume z_1 == f_195;
    goto j_1;
-   l1_3:
+   l_1_3:
    assume x_1_0 == 0;
    assume x_1_1 == 0;
    assume x_1_2 == 0;
@@ -359,7 +625,7 @@ procedure P()
    f_207 := F(f_206,f_206);
    assume z_1 == f_207;
    goto j_1;
-   l1_4:
+   l_1_4:
    assume x_1_0 == 0;
    assume x_1_1 == 0;
    assume x_1_2 == 0;
@@ -383,7 +649,7 @@ procedure P()
    f_220 := F(f_219,f_219);
    assume z_1 == f_220;
    goto j_1;
-   l1_5:
+   l_1_5:
    assume x_1_0 == 0;
    assume x_1_1 == 0;
    assume x_1_2 == 0;
@@ -408,7 +674,7 @@ procedure P()
    f_234 := F(f_233,f_233);
    assume z_1 == f_234;
    goto j_1;
-   l1_6:
+   l_1_6:
    assume x_1_0 == 0;
    assume x_1_1 == 0;
    assume x_1_2 == 0;
@@ -434,7 +700,7 @@ procedure P()
    f_249 := F(f_248,f_248);
    assume z_1 == f_249;
    goto j_1;
-   l1_7:
+   l_1_7:
    assume x_1_0 == 0;
    assume x_1_1 == 0;
    assume x_1_2 == 0;

@@ -1,6 +1,7 @@
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -28,18 +29,23 @@ public class Main {
 	
 	static class Dumper
 	{
-		final  PrintWriter f;
+		final  PrintWriter ff;
 		final int kk;
 		final int n;
 		public Dumper(PrintWriter w,int k)
 		{
-			this.f=w;
+			this.ff=w;
 			this.kk=k;
 			this.n = pow2(k);
 		}
 		final String labelName = "l";
 		public List<String[]> varNamess = new ArrayList<String[]>();
 		public final int numRounds=2;
+		public final LinkedList<String> buffer = new LinkedList<String>();
+		private void dumpString(String s)
+		{
+			buffer.add(s);
+		}
 		public void dump()
 		{
 			dumpPre();
@@ -54,14 +60,28 @@ public class Main {
 				}
 				varNamess.add(varNames);
 			}
+			List<String> allVars = new LinkedList<String>();
 			String[] ri = new String[numRounds];
 			for (int rn=0;rn<numRounds;rn++)
+			{
 				ri[rn] = dumpRound(rn);
+				allVars.addAll(fMap.values());
+				fMap.clear();
+
+			}
 			for (int rn=0;rn<numRounds-1;rn++)
 				for (int i=0;i<n;i++)
 					dumpEquality(varNamess.get(rn)[i],varNamess.get(rn+1)[i]);
 			for (int rn=0;rn<numRounds-1;rn++)
-				f.println("   assert " + ri[rn] + "==" + ri[rn+1] + ";");
+				dumpString("   assert " + ri[rn] + "==" + ri[rn+1] + ";");
+
+			for (String v : allVars)
+			{
+				ff.println("   var " + v + " : Integer;");
+			}
+			
+			for (String ss:buffer)
+				ff.println(ss);
 			dumpPost();
 		}
 		public String dumpRound(int rn)
@@ -90,12 +110,11 @@ public class Main {
 				printJoinee(i,labelNames[i],joinLabel,zName,varNames);
 			
 			dumpLabel(joinLabel);
-			fMap.clear();
 			return zName;
 			
 		}
 		private void dumpLabel(String l) {
-			f.println("   " + l + ":");
+			dumpString("   " + l + ":");
 		}
 		private void printJoinee(int index,String l,String joinLabel,String zName,String[] varNames) {
 			dumpLabel(l);
@@ -103,10 +122,10 @@ public class Main {
 				dumpEquality(varNames[i], i==index ? "1" : "0");
 			String a = dumpA(index);
 			dumpEquality(zName,a);
-			f.println("   goto " + joinLabel + ";");
+			dumpString("   goto " + joinLabel + ";");
 		}
 		private void dumpEquality(String zName, String a) {
-			f.println("   assume " + zName + " == " + a + ";");
+			dumpString("   assume " + zName + " == " + a + ";");
 		}
 /*		private int log2(int x)
 		{
@@ -179,31 +198,37 @@ public class Main {
 				return fMap.get(rep);
 			String name = "f_" + Integer.toString(fIndex);
 			fIndex++;
-			f.println("   " + name + " := " + rep + ";");
+			dumpString("   " + name + " := " + rep + ";");
 			fMap.put(rep, name);
 			return name;
 		}
 		private void dumpGoto(String[] labelNames) {
-			f.print("   goto ");
+			String s = "   goto ";
 			boolean b = false;
 			for (String ln : labelNames)
 			{
 				if (b)
-					f.print(",");
-				f.print(ln);
+					s+=",";
+				s+=ln;
 				b=true;
 			}
-			f.println(";");
+			s+=";";
+			dumpString(s);
+		}
+		private final String intName = "int";
+		private String varDeclString(String name)
+		{
+			return "   var " + name + " : " + intName + ";";
 		}
 		private void declareVariable(String name) {
-			f.println("   var " + name + " : Int;");
+			dumpString(varDeclString(name));
 		}
 		private void dumpPre() {
-			f.println("procedure P()");
-			f.println("{");
+			ff.println("procedure P()");
+			ff.println("{");
 		}
 		private void dumpPost() {
-			f.println("}");
+			ff.println("}");
 		}
 	}
 
