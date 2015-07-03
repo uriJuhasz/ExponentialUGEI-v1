@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
 	public static final int k = 4;
-	public static final int numRounds = 16;
+	public static final int numRounds = 64;
 	public static final String fileNameBase = "PP";
 	public static void main(String[] args) throws Exception{
 		System.out.println("Starting dump at " + Integer.toString(k));
