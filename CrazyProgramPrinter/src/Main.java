@@ -6,8 +6,8 @@ import java.util.List;
 
 
 public class Main {
-	public static final int k = 3;
-	public static final int numRounds = 64;
+	public static final int k = 4;
+	public static final int numRounds = 16;
 	public static final String fileNameBase = "PP";
 	public static void main(String[] args) throws Exception{
 		System.out.println("Starting dump at " + Integer.toString(k));
@@ -79,7 +79,7 @@ public class Main {
 				for (int i=0;i<n;i++)
 					dumpEquality(varNamess.get(rn)[i],varNamess.get(rn+1)[i]);
 			for (int rn=0;rn<numRounds-1;rn++)
-				dumpString("   assert " + ri[rn] + "==" + ri[rn+1] + ";");
+				dumpString("   assert " + ri[rn] + "==" + ri[numRounds-1] + ";");
 
 			for (String v : allVars)
 			{
