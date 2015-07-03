@@ -6,15 +6,16 @@ import java.util.List;
 
 
 public class Main {
-	public static final int k = 8; 
+	public static final int k = 3;
+	public static final int numRounds = 64;
 	public static final String fileNameBase = "PP";
 	public static void main(String[] args) throws Exception{
 		System.out.println("Starting dump at " + Integer.toString(k));
-		String fileName = fileNameBase + "_" + Integer.toString(k) + ".bpl";
+		String fileName = fileNameBase + "_" + Integer.toString(numRounds) + "_" + Integer.toString(k) + ".bpl";
 //		try{
 			PrintWriter w = new PrintWriter(fileName, "UTF-8");
 			try{
-				Dumper d = new Dumper(w,k);
+				Dumper d = new Dumper(w,numRounds, k);
 				d.dump();
 			}finally{
 				w.flush();
@@ -32,15 +33,16 @@ public class Main {
 		final  PrintWriter ff;
 		final int kk;
 		final int n;
-		public Dumper(PrintWriter w,int k)
+		public final int numRounds;
+		public Dumper(PrintWriter w,int numRounds,int k)
 		{
 			this.ff=w;
 			this.kk=k;
+			this.numRounds = numRounds;
 			this.n = pow2(k);
 		}
 		final String labelName = "l";
 		public List<String[]> varNamess = new ArrayList<String[]>();
-		public final int numRounds=2;
 		public final LinkedList<String> buffer = new LinkedList<String>();
 		public final ArrayList<HashMap<String,String>> allMaps = new ArrayList<HashMap<String,String>>(); 
 		private void dumpString(String s)
@@ -229,9 +231,6 @@ public class Main {
 		private String varDeclString(String name)
 		{
 			return "   var " + name + " : " + intName + ";";
-		}
-		private void declareVariable(String name) {
-			dumpString(varDeclString(name));
 		}
 		private void dumpPre() {
 			ff.println("function F(int,int) returns (int);");
