@@ -6,7 +6,7 @@ import java.util.List;
 
 
 public class Main {
-	public static final int k = 3; 
+	public static final int k = 8; 
 	public static final String fileNameBase = "PP";
 	public static void main(String[] args) throws Exception{
 		System.out.println("Starting dump at " + Integer.toString(k));
@@ -42,6 +42,7 @@ public class Main {
 		public List<String[]> varNamess = new ArrayList<String[]>();
 		public final int numRounds=2;
 		public final LinkedList<String> buffer = new LinkedList<String>();
+		public final ArrayList<HashMap<String,String>> allMaps = new ArrayList<HashMap<String,String>>(); 
 		private void dumpString(String s)
 		{
 			buffer.add(s);
@@ -49,23 +50,26 @@ public class Main {
 		public void dump()
 		{
 			dumpPre();
+			List<String> allVars = new LinkedList<String>();
 			for (int rn=0;rn<numRounds;rn++)
 			{
 				String[] varNames = new String[n];
 				for (int i=0;i<n;i++)
 				{
 					String varName = "x_" + Integer.toString(rn) + "_" + Integer.toString(i);
-					declareVariable(varName);
+//					declareVariable(varName);
 					varNames[i] = varName;
+					allVars.add(varName);
 				}
 				varNamess.add(varNames);
 			}
-			List<String> allVars = new LinkedList<String>();
 			String[] ri = new String[numRounds];
 			for (int rn=0;rn<numRounds;rn++)
 			{
 				ri[rn] = dumpRound(rn);
 				allVars.addAll(fMap.values());
+				allVars.add(ri[rn]);
+				allMaps.add(new HashMap<String,String>(fMap));
 				fMap.clear();
 
 			}
@@ -77,7 +81,13 @@ public class Main {
 
 			for (String v : allVars)
 			{
-				ff.println("   var " + v + " : Integer;");
+				ff.println(varDeclString(v));
+			}
+			
+			for (HashMap<String,String> m : allMaps)
+			{
+				for (String k : m.keySet())
+					ff.println("   assume " + k + " == " + m.get(k) + ";");
 			}
 			
 			for (String ss:buffer)
@@ -198,7 +208,7 @@ public class Main {
 				return fMap.get(rep);
 			String name = "f_" + Integer.toString(fIndex);
 			fIndex++;
-			dumpString("   " + name + " := " + rep + ";");
+//			dumpString("   " + name + " := " + rep + ";");
 			fMap.put(rep, name);
 			return name;
 		}
@@ -224,8 +234,10 @@ public class Main {
 			dumpString(varDeclString(name));
 		}
 		private void dumpPre() {
+			ff.println("function F(int,int) returns (int);");
 			ff.println("procedure P()");
 			ff.println("{");
+			
 		}
 		private void dumpPost() {
 			ff.println("}");
